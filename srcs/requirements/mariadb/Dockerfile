@@ -7,13 +7,10 @@ RUN apt-get update -y && apt-get install -y mariadb-server
 RUN sed -i 's/# bind-address = 127.0.0.1/bind-address = 0.0.0.0/' /etc/mysql/mariadb.conf.d/50-server.cnf
 
 # Copy the script to create the database and configure the database
-#COPY ./srcs/requirements/mariadb/entrypoint.sh /entrypoint.sh
-
-#Run the script
-#RUN chmod +x /script_db.sh && sh script_db.sh
+COPY ./srcs/requirements/mariadb/entrypoint.sh /entrypoint.sh
 
 #Expose the port
 EXPOSE 3306
 
 #Run the service
-CMD ["mysqld_safe"]
+CMD ["sh", "entrypoint.sh"]
