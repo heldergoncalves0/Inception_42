@@ -1,4 +1,4 @@
-FROM debian:11
+FROM debian:bullseye
 
 # Install MariaDB
 RUN apt-get update -y && apt-get install -y mariadb-server

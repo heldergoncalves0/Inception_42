@@ -1,9 +1,9 @@
 #!/bin/bash
 
-while ! mariadb -h$WORDPRESS_DB_HOST -u$WORDPRESS_DB_USER -p$WORDPRESS_DB_PASSWORD $WORDPRESS_DB_NAME &>/dev/null ; do
-	echo "Waiting for MariaDB to start..."
-	sleep 1
-done
+# while ! mariadb -h$WORDPRESS_DB_HOST -u$WORDPRESS_DB_USER -p$WORDPRESS_DB_PASSWORD $WORDPRESS_DB_NAME &>/dev/null ; do
+# 	echo "Waiting for MariaDB to start..."
+# 	sleep 1
+# done
 
 # Ensure the directory for WordPress exists
 if [ ! -d /var/www/html ]; then

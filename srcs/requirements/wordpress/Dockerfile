@@ -1,4 +1,4 @@
-FROM debian:11
+FROM debian:bullseye
 
 # Install necessary packages
 RUN apt-get update -y &&  \

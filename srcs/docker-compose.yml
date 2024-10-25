@@ -1,5 +1,5 @@
 services:
-  db:
+  mariadb:
     build:
       context: ./requirements/mariadb
 
@@ -15,6 +15,13 @@ services:
 
     volumes:
       - db_data:/var/lib/mysql
+    
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u ${MYSQL_ADMIN_USER} -p${MYSQL_ADMIN_PASSWORD} || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
     
     restart: always
   
@@ -52,7 +59,8 @@ services:
       - wordpress:/var/www/html
 
     depends_on:
-      - db
+      mariadb:
+        condition: service_healthy
       
 
     #restart: always
@@ -76,7 +84,19 @@ networks:
 
 volumes:
   db_data:
+    name: db_data
+    driver: local
+    driver_opts:
+      type: none
+      device: /Users/heldergoncalves/Desktop/inception/test1/
+      o: bind
   wordpress:
+    name: wordpress
+    driver: local
+    driver_opts:
+      type: none
+      device: /Users/heldergoncalves/Desktop/inception/test/
+      o: bind
 
   
 
