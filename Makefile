@@ -4,7 +4,7 @@ all: setup up
 
 setup:
 	# Add or replace localhost entry with your domain in /etc/hosts
-	@grep -qxF '127.0.0.1	helferna.42.fr' /etc/hosts || sudo sed -i "s/127.0.0.1\s\+localhost/127.0.0.1\tlocalhost helferna.42.fr/" /etc/hosts
+	@grep -qxF '127.0.0.1	helferna.42.fr' /etc/hosts || sudo sed -i "s/127.0.0.1\s\+localhost/127.0.0.1\thelferna.42.fr/" /etc/hosts
 	# Create required directories
 	@sudo mkdir -p $(DATA_PATH)/wordpress
 	@sudo mkdir -p $(DATA_PATH)/mariadb
@@ -25,7 +25,7 @@ remove-setup:
 	# Remove the added entry from /etc/hosts
 	@sudo sed -i '/127.0.0.1\s\+helferna.42.fr/d' /etc/hosts
 	# Remove created directories
-	@sudo rm -rf $(DATA_PATH)/wordpress $(DATA_PATH)/db
+	@sudo rm -rf $(DATA_PATH)/wordpress $(DATA_PATH)/mariadb
 
 # Prevent make from thinking "PHONY" is a file target
 .PHONY: all up build down setup clean
