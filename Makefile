@@ -7,7 +7,7 @@ setup:
 	@grep -qxF '127.0.0.1	helferna.42.fr' /etc/hosts || sudo sed -i "s/127.0.0.1\s\+localhost/127.0.0.1\tlocalhost helferna.42.fr/" /etc/hosts
 	# Create required directories
 	@sudo mkdir -p $(DATA_PATH)/wordpress
-	@sudo mkdir -p $(DATA_PATH)/db
+	@sudo mkdir -p $(DATA_PATH)/mariadb
 
 up: 
 	docker-compose -f srcs/docker-compose.yml up -d
@@ -19,10 +19,7 @@ down:
 	docker-compose -f srcs/docker-compose.yml down
 
 clean:
-	# Bring down containers and remove volumes
-	docker-compose -f srcs/docker-compose.yml down -v --rmi local --volumes
-	# Remove named volumes explicitly
-	docker volume rm srcs_db_data srcs_wordpress || true
+	docker-compose -f srcs/docker-compose.yml down --rmi all --volumes
 
 remove-setup:
 	# Remove the added entry from /etc/hosts

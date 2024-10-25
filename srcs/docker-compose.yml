@@ -88,14 +88,14 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /Users/heldergoncalves/Desktop/inception/test1/
+      device: /home/helferna/data/mariadb
       o: bind
   wordpress:
     name: wordpress
     driver: local
     driver_opts:
       type: none
-      device: /Users/heldergoncalves/Desktop/inception/test/
+      device: /home/helferna/data/wordpress
       o: bind
 
   
