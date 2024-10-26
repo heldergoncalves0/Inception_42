@@ -4,8 +4,6 @@ FROM debian:bullseye
 RUN apt-get update -y &&  \
     apt-get install -y php7.4-fpm php-mysql curl mariadb-client less
 
-#RUN which php-fpm
-
 # Copy the initialization script
 COPY ./script.sh /
 
